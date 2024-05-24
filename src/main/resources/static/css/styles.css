@@ -1,0 +1,157 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+	color: grey;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body {
+    font-family: Arial;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+nav {
+	height: 30px;
+	width: 100%;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 20px 0;
+}
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+main {
+	width: 80%;
+	min-height: calc(100vh - 130px)
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+thead {
+    background-color: black;
+    color: white;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+    background-color: white;
+}
+
+td a {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #008080;
+    background-color: #008080;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+td a:hover {
+    background-color: #005959;
+    border-color: #005959;
+}
+
+footer {
+	height: 60px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #008080;
+	color: white;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: column;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.form-container label {
+	margin: 10px 0 5px;
+	font-weight: bold;
+}
+
+.form-container input, .form-container textarea, .form-container select {
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 100%;
+	resize: none;
+}
+
+.form-container textarea {
+	height: 100px;
+}
+
+.form-container button {
+	padding: 10px 15px;
+	background-color: #008080;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.ml {
+	margin-left: 20px;
+}
+
+.btn:link, .btn:visited {
+	background-color: #008080;
+	color: white;
+	padding: 14px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.btn:hover, .btn:active {
+	background-color: #004040;
+}
+
+.error {
+	color: rgb(254, 65, 1);
+}
+
+
+
+
+
+

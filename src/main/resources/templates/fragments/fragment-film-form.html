@@ -1,0 +1,68 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="formulaire(isReadOnly)">
+	<div class="form-container">
+	
+		<p th:each="error : ${#fields.errors('global')}" th:text="#{${error}}" class="error"></p>
+		
+		<form th:object="${film}" th:action="@{/films/creer}" method="post">
+			<label for="titre">Titre</label>
+			<div th:replace="~{fragments/fragment-error-field :: fragment-error-field('titre')}"></div>
+			<input type="text" id="titre" th:field="*{titre}" th:disabled="${isReadOnly}" />
+
+			<label for="annee">Année</label>
+			<div th:replace="~{fragments/fragment-error-field :: fragment-error-field('annee')}"></div>
+			<input type="number" id="annee" th:field="*{annee}" th:disabled="${isReadOnly}" />
+
+			<label for="duree">Durée</label>
+			<div th:replace="~{fragments/fragment-error-field :: fragment-error-field('duree')}"></div>
+			<input type="number" id="duree" th:field="*{duree}" th:disabled="${isReadOnly}" />
+
+			<label for="synopsis">Synopsis</label>
+			<div th:replace="~{fragments/fragment-error-field :: fragment-error-field('synopsis')}"></div>
+			<textarea id="synopsis" th:field="*{synopsis}" th:disabled="${isReadOnly}"></textarea>
+
+			<th:block th:if="${isReadOnly}">
+				<label for="genre">Genre</label>
+				<input type="text" id="genre" th:field="*{genre.titre}" disabled />
+
+				<label for="realisateur">Réalisateur</label>
+				<input type="text" id="realisateur" th:value="*{realisateur.nom.toUpperCase()} + ' ' + *{realisateur.prenom}"
+					disabled />
+
+				<label>Acteurs</label>
+				<div th:each="acteur : *{acteurs}">
+					<input type="text" th:value="${acteur.nom.toUpperCase()} + ' ' + ${acteur.prenom}" disabled />
+				</div>
+				<th:block th:if="${#lists.size(film.avis) != 0}">
+					<label>Avis</label>
+					<div th:each="unAvis : *{avis}">
+						<input type="text"
+							th:value="${unAvis.membre.nom.toUpperCase()} + ' ' + ${unAvis.membre.prenom} + ' [' + ${unAvis.note} + '/5] : ' + ${unAvis.commentaire}"
+							disabled />
+					</div>
+				</th:block>
+			</th:block>
+
+			<th:block th:if="${!isReadOnly}">
+				<label for="genre">Genre</label>
+				<div th:replace="~{fragments/fragment-error-field :: fragment-error-field('genre')}"></div>
+				<select id="genre" th:field="*{genre}">
+					<option th:each="genre : ${genresEnSession}" th:value="${genre.id}" th:text="${genre.titre}"></option>
+				</select>
+				
+				<label for="realisateur">Réalisateur</label>
+				<div th:replace="~{fragments/fragment-error-field :: fragment-error-field('realisateur')}"></div>
+				<select id="realisateur" th:field="*{realisateur}">
+					<option th:each="participant : ${participantsEnSession}" th:value="${participant.id}" th:text="${participant.nom.toUpperCase() + ' ' + participant.prenom}"></option>
+				</select>
+				
+				<label for="acteurs">Acteurs</label>
+				<div th:replace="~{fragments/fragment-error-field :: fragment-error-field('acteurs')}"></div>
+				<select id="acteurs" th:field="*{acteurs}" multiple>
+					<option th:each="participant : ${participantsEnSession}" th:value="${participant.id}" th:text="${participant.nom.toUpperCase() + ' ' + participant.prenom}"></option>
+				</select>
+
+				<button type="submit">Enregistrer</button>
+			</th:block>
+		</form>
+	</div>
+</div>

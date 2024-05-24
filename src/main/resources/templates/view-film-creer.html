@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layouts/layout :: layout (title='Créer film', main=~{::main})">
+<main>
+	<h1 style="margin: 20px; text-align: center;">Création d'un film</h1>
+	<div th:replace="fragments/fragment-film-form.html :: formulaire(isReadOnly=false)"></div>
+</main>
+</html>

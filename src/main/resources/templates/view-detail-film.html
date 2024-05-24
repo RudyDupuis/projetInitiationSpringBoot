@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layouts/layout :: layout (title=${film.titre}, main=~{::main})">
+	<main>
+		<div th:replace="fragments/fragment-film-form.html :: formulaire(isReadOnly=true)"></div>
+	</main>
+</html>
+
+
+
+
+

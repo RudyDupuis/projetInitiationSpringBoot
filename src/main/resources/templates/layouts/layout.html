@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout (title, main)">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{nom-application} + ' - ' + ${title}"></title>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+	<nav>
+		<ul>
+			<li class="logo">
+				<a th:href="@{/}">
+					<img src="/img/logoFilmotheque.png" alt="Filmothèque" style="height: 25px; margin-right: 5px;">
+					<span th:text="#{nom-application}"></span>
+				</a>
+				<th:block th:if="${membreEnSession != null && membreEnSession.id != 0}">
+					<span th:text="${membreEnSession.prenom}" style="font-size: 15px;"></span>
+				</th:block>
+			</li>
+			<li>
+				<ul>
+					<li>
+						<a th:href="@{/films}" th:text="#{frag-entete.a.films}"></a>
+					</li>
+					<th:block th:if="${#authorization.expression('isAuthenticated()')}">
+						<li class="ml" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+							<a th:href="@{/films/creer}" th:text="#{frag-entete.a.films.creer}"></a>
+						</li>
+						<li class="ml">
+							<a th:href="@{/logout}" th:text="#{frag-entete.a.deconnexion}"></a>
+						</li>
+					</th:block>
+					<th:block th:if="${!#authorization.expression('isAuthenticated()')}">
+						<li class="ml">
+							<a th:href="@{/login}" th:text="#{frag-entete.a.connexion}"></a>
+						</li>
+					</th:block>
+					<li class="ml">
+						<a th:href="@{/?language=fr}">
+							<img src="/img/French.webp" alt="Drapeau Français" style="height: 15px;">
+						</a>
+						<a th:href="@{/?language=en}">
+							<img src="/img/English.webp" alt="Drapeau anglais" style="height: 15px; margin-left: 5px;">
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<div th:replace="~{::main}"></div>
+	<footer>
+		<p>
+			@ ENI -
+			<span th:text="#{frag-piedpage.p}"></span>
+		</p>
+	</footer>
+</body>
+</html>

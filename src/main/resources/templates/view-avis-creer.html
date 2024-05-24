@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layouts/layout :: layout (title='Créer Avis', main=~{::main})">
+<main>
+	<h1 style="margin: 20px; text-align: center;" th:text="${'Ajouter un avis au film : ' + titreFilm}"></h1>
+	<div class="form-container">
+		<form th:action="@{/avis/creer?idFilm=}+${idFilm}" method="post" th:object="${avis}">
+			<label for="note">Note</label>
+			<div th:replace="~{fragments/fragment-error-field :: fragment-error-field('note')}"></div>
+			<input type="number" min="0" max="5" id="note" th:field="*{note}" required/>
+			
+			<label for="commentaire">Commentaire</label>
+			<div th:replace="~{fragments/fragment-error-field :: fragment-error-field('commentaire')}"></div>
+			<textarea id="commentaire" th:field="*{commentaire}" required></textarea>
+			
+			<button type="submit">Enregistrer</button>
+		</form>
+	</div>
+</main>
+</html>

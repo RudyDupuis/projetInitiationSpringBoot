@@ -1,0 +1,3 @@
+<p xmlns:th="http://www.thymeleaf.org" th:fragment="fragment-error-field(inputName)" class="error" th:if="${#fields.hasErrors(inputName)}">
+	<span th:each="error : ${#fields.errors(inputName)}" th:text="${error}"></span>
+</p>

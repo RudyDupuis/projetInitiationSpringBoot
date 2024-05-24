@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layouts/layout :: layout (title=#{login.title}, main=~{::main})">
+<main>
+	<h1 style="text-align: center; margin-top: 100px;" th:text="#{login.h1}"></h1>
+	<div class="form-container">
+		<form th:action="@{/login}" method="post" >
+			<label for="username" th:text="#{login.username}"></label>
+			<input type="text" id="username" name="username" />
+			
+			<label for="password" th:text="#{login.pwd}"></label>
+			<input type="password" id="password" name="password" />
+			
+			<button type="submit" th:text="#{login.button}"></button>
+			<p class="error" th:if="${param.error}" th:text="{#login.error}"></p>
+		</form>
+	</div>
+</main>
+</html>
